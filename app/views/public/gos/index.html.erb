@@ -1,0 +1,30 @@
+<h4>public_go_index</h4>
+<div class="container">
+  <div class="row">
+    <h5>行ってみたい 全<%= @posts.count %>件</h5>
+  </div>
+
+  <div class="row">
+    <% if @go_list.present? %>
+      <% @go_list.each do |post| %>
+
+      <div class="item-image col-md-3">
+        <div class="shop text-center">
+          <%= post.shop %>
+        </div>
+        <div class="photo text-center">
+          <%=link_to public_post_path(post) do %>
+          <% if post.image.attached? %>
+            <%= image_tag post.image, size: "200x200" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "200x200" %>
+          <% end %>
+        <% end %>
+        </div>
+      </div>
+
+      <% end %>
+    <% end %>
+  </div>
+</div>
+

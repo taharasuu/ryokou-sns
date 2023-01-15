@@ -1,0 +1,26 @@
+<h4>followed</h4>
+
+<h2>フォロー中</h2>
+
+<% if @followeds.exists? %>
+  <% @followeds.each do |followed| %>
+    <table>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= followed.name %></td>
+          <td>フォロー数: <%= customer.followeds.count %></td>
+          <td>フォロワー数: <%= customer.followers.count %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>

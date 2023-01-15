@@ -1,0 +1,40 @@
+<h4>pulic_posts_edit</h4>
+
+<div class="container">
+  <div class="row">
+    <h2>投稿編集</h2>
+  </div>
+
+  <div class="row">
+    <%= form_with model: @post, url: public_post_path(@post.id), method: :patch do |f| %>
+      <table class="mx-auto">
+        <tr>
+          <th>施設名</th>
+          <td><%= f.text_field :shop %></td>
+        </tr>
+        <tr>
+          <th>写真</th>
+          <td><%= f.file_field :image, accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <th>ジャンル</th>
+          <td><%= f.select :amount, *[@genres] %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= f.text_field :postal_code %></td>
+          <td><%= f.text_field :address %></td>
+        </tr>
+        <tr>
+          <th>コメント</th>
+          <td><%= f.text_area :text, size: "40x5" %></td>
+        </tr>
+        <tr>
+          <th>あなたの評価</th>
+          <td><%= f.select :amount, *[1..10] %></td>
+        </tr>
+      </table>
+      <%= f.submit "投稿" , class: "btn btn-primary"%>
+    <% end %>
+  </div>
+</div>

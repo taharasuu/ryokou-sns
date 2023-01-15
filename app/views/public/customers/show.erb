@@ -1,0 +1,75 @@
+<h4>public_customer_show</h4>
+<div class="container col-lg-8">
+  <div class="row">
+    <h2 class="page-name col-lg-5">プロフィール</h2>
+  </div>
+
+  <div class="row">
+    <div class="i_con col-lg-4">
+      <% if @customer.image.attached? %>
+        <%= image_tag @customer.image, size: "100x100" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "100x100" %>
+      <% end %>
+    </div>
+    <div class="user-name">
+      <%= @customer.user_name %>
+    </div>
+    <div class="folloew ed">
+      <%= link_to "フォロー中", public_follow_followed_path(@customer.id) %></br>
+      <%= @customer.followeds.count %>
+    </div>
+    <div class="folloew er">
+      <%= link_to "フォロワー", public_follow_follower_path(@customer.id) %></br>
+      <%= @customer.followers.count %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="introduction">
+      <%= @customer.introduction %>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <% if current_customer %>
+      <div class="profile">
+        <%= link_to "プロフィール変更", edit_public_customer_path(current_customer), class: 'btn btn-outline-dark' %>
+      </div>
+      <div class="customer_information">
+        <%= link_to "会員情報変更", public_customer_inf_edit_path(current_customer), class: 'btn btn-outline-dark' %>
+      </div>
+      <div class="go">
+        <%= link_to "行ってみたい", public_post_index_go_path(current_customer), class: 'btn btn-outline-dark' %>
+      </div>
+    <% else %>
+      <div class="following">
+        <% if current_customer.following?(@customer) %>
+          <%= link_to "フォロー外す", public_customer_follow_path(@customer.id), method: :delete %>
+        <% else %>
+          <%= link_to "フォローする", public_customer_follows_path(@customer.id), method: :post %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <h5>投稿 全<%= @posts.count %>件</h5>
+  </div>
+
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="item-image col-md-3">
+        <%=link_to public_post_path(post) do %>
+          <% if post.image.attached? %>
+            <%= image_tag post.image, size: "200x200" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "200x200" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+

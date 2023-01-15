@@ -1,0 +1,130 @@
+<h4>public_posts_show</h4>
+<div class="container col-lg-8">
+  <div class="row">
+    <div class="i_con col-lg-4">
+      <%=link_to public_customer_path(@post) do %>
+        <% if @post.customer.image.attached? %>
+          <%= image_tag @post.customer.image, size: "50x50" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "50x50" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="user-name">
+      <%= @post.customer.user_name %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="shop-name col-lg-10">
+      <h2><%= @post.shop %></h2>
+    </div>
+    <div class="going col-lg-2">
+      <% if current_customer.go_find(@post.id) %>
+        <%= link_to '行ってみたい!(外す)', public_post_destroy_go_path(@post.id), method: :delete %>
+      <% else %>
+        <%= link_to '行ってみたい!', public_post_create_go_path(@post.id), method: :post %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="photo mx-auto">
+      <% if @post.image.attached? %>
+        <%= image_tag @post.image, size: "400x400" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "400x400" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="address col-lg-6">
+      <p>〒<%= @post.postal_code %></br>
+          　<%= @post.address %></p>
+    </div>
+    <div class="map col-lg-2">
+      a
+    </div>
+    <div class="evaluation col-lg-2">
+      <p>評価:<%= @post.evaluation %>/10点中</p>
+    </div>
+    <div class="good col-lg-2">
+      <% if current_customer.good_find(@post.id) %>
+        <%= link_to public_post_destroy_good_path(@post.id), method: :delete do %>
+          <span><i class="far fa-heart"></i></span>
+        <% end %>
+      <% else %>
+        <%= link_to public_post_create_good_path(@post.id), method: :post do %>
+          <span><i class="fas fa-heart"></i></span>
+        <% end %>
+      <% end %>
+      <t>お気に入り <%= @post.goods.count %>件</t>
+    </div>
+  </div>
+  <div class="text">
+    <%= @post.text %>
+  </div>
+
+  <div class="row">
+    <% if current_customer %>
+      <div class="post botn col-lg-3">
+      </div>
+
+      <div class="post botn col-lg-3 px-auto">
+        <%= link_to "投稿編集", edit_public_post_path(@post.id), class: 'btn col-lg-12 btn-outline-dark' %>
+      </div>
+
+      <div class="post botn col-lg-3 px-auto">
+        <%= link_to "投稿削除", public_post_path(@post.id), method: :delete, data:{confirm: " [確認]　削除しますか?"}, class: 'btn col-lg-12 btn-outline-dark' %>
+      </div>
+
+      <div class="post botn col-lg-3">
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <h3>コメント</h3>
+  </div>
+  <div class="row">
+    <div class="comment col-lg-5">
+      <%= form_with model: [:public, @post, @comment] do |f| %>
+        <%= f.text_area :comment, size: "40x5" %>
+        <%= f.submit '送信', class: "btn-sm btn-primary" %>
+      <% end %>
+    </div>
+
+    <div class="comment col-lg-7">
+      <table class="table table-hover table-inverse col-md-12 px-auto">
+        <thead class="text-center">
+          <tr>
+            <th>コメント投稿者</th>
+            <th>コメント内容</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @comments.each do |comment| %>
+            <tr>
+              <td><% if comment.customer.image.attached? %>
+                    <%= image_tag comment.customer.image, size: "50x50" %>
+                  <% else %>
+                    <%= image_tag 'no_image', size: "50x50" %>
+                  <% end %>
+                  　　<%= comment.customer.user_name %></td>
+              <td><%= comment.comment %></td>
+              <td class="text-center"><%= link_to "削除", public_post_comment_path(@post, comment), method: :delete %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+
+
+
+

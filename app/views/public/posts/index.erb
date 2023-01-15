@@ -1,0 +1,47 @@
+<h4>public_post_index</h4>
+<div class="container col-lg-6">
+  <div class="row">
+    <h3 class="page-name">投稿一覧</h3>
+  </div>
+
+  <% @posts.each do |post| %>
+    <div class="row">
+      <div class="i_con col-lg-1">
+        <% if post.customer.image.attached? %>
+          <%= image_tag post.customer.image, size: "50x50" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "50x50" %>
+        <% end %>
+      </div>
+
+      <div class="user-name col-lg-11">
+        <%= post.customer.user_name %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="photo mx-auto">
+        <%=link_to public_post_path(post) do %>
+          <% if post.image.attached? %>
+            <%= image_tag post.image, size: "300x300" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "300x300" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="shop col-lg-3">
+        <h3><%= post.shop %></h3>
+      </div>
+      <div class="address col-lg-5">
+        <p>〒<%= post.postal_code %></br>
+            　<%= post.address %></p>
+      </div>
+      <div class="good col-lg-3">
+        <p>お気に入り <%= post.goods.count %>件</p>
+      </div>
+    </div>
+  <% end %>
+</div>
