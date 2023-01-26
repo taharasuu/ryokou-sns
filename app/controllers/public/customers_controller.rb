@@ -9,7 +9,24 @@ class Public::CustomersController < ApplicationController
     end
     @keyword = params[:keyword]
   end
+ #会員情報変更
+  def inf_edit
+    @customer = Customer.find(params[:customer_id])
+  end
 
+  def inf_update
+    customer = Customer.find(params[:customer_id])
+    customer.update(customer_params)
+    redirect_to public_customer_path(current_customer.id)
+  end
+#ゲストログイン機能
+  def self.guest
+    find_or_create_by!(email: "guest@example.com") do |customer|
+      customer.password = SecureRandom.urlsafe_base64
+      customer.confirmed_at = Time.now # ← Confirmable を設定している場合は追加
+      # user.name = "ゲストユーザー" # ←ユーザー名を設定している場合は追加
+    end
+  end
 
   def new
     @customer = Customer.new
@@ -24,7 +41,7 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @customers = Customer.all
-    @posts = current_customer.posts.all
+    @posts = current_customer.posts.page(params[:page]).per(8)
   end
 
   def edit
@@ -35,6 +52,18 @@ class Public::CustomersController < ApplicationController
     customer = Customer.find(params[:id])
     customer.update(customer_params)
     redirect_to public_customer_path(current_customer.id)
+  end
+
+  #退会機能
+  def confirm
+
+  end
+
+  def withdrow
+    customer = current_customer
+    customer.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
   end
 
   private

@@ -12,6 +12,10 @@ class Public::PostsController < ApplicationController
     @keyword = params[:keyword]
   end
 
+#地図機能
+  def map
+    @post = Post.find(params[:post_id])
+  end
 
   def new
     @post = Post.new
@@ -31,7 +35,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(8)
   end
 
   def edit

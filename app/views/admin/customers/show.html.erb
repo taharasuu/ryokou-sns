@@ -1,6 +1,6 @@
 <h4>admin customers show</h4>
 
-<div class="container">
+<div class="container ppp col-lg-8">
   <div class="row">
     <h3 class="page-name">
       <strong>
@@ -14,8 +14,8 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-10">
-      <table>
+    <div class="col-lg-12">
+      <table class="table table-hover table-inverse">
         <tr>
           <th>会員ID</th>
           <td><%= @customer.id %></td>
@@ -28,14 +28,7 @@
           <th>フリガナ</th>
           <td><%= @customer.first_name_kana %><%= @customer.last_name_kana %></td>
         </tr>
-        <tr>
-          <th>郵便番号</th>
-          <td><%= @customer.postal_code %></td>
-        </tr>
-        <tr>
-          <th>住所</th>
-          <td><%= @customer.address %></td>
-        </tr>
+
         <tr>
           <th>電話番号</th>
           <td><%= @customer.telephone_number %></td>

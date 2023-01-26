@@ -1,26 +1,43 @@
 <h4>follwer</h4>
+<div class="container ppp  col-lg-8">
+  <div class="row">
+    <h2>フォロワー</h2>
+  </div>
 
-<h2>フォロワー</h2>
+  <div class="row">
+    <% if @followers.exists? %>
+      <table class="table table-hover table-inverse col-md-12 px-auto">
+        <thead>
+          <tr>
+            <th></th>
+            <th>ユーザー名</th>
+            <th>フォロー数</th>
+            <th>フォロワー数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @followers.each do |follower| %>
+          <tr>
+            <td><% if follower.image.attached? %>
+                  <%= image_tag follower.image, size: "50x50" %>
+                <% else %>
+                  <%= image_tag 'no_image', size: "50x50" %>
+                <% end %>
+            </td>
+            <td><%= follower.user_name %></td>
+            <td><%= follower.followeds.count %></td>
+            <td><%= follower.followers.count %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-<% if @followers.exists? %>
-  <% @followers.each do |follower| %>
-    <table>
-      <thead>
-        <tr>
-          <th>name</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= follower.name %></td>
-          <td>フォロー数: <%= customer.followeds.count %></td>
-          <td>フォロワー数: <%= customer.followers.count %></td>
-        </tr>
-      </tbody>
-    </table>
-  <% end %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+      <div class="paginate">
+        <%= paginate @follower %>
+      </div>
+
+    <% else %>
+      <h5>ユーザーはいません</h5>
+    <% end %>
+  </div>
+</div>

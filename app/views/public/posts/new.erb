@@ -1,43 +1,40 @@
 <h4>public_post_new</h4>
 
-<div class="container col-lg-6">
+<div class="container ppp col-lg-8">
   <div class="row">
     <h2>新規投稿</h2>
   </div>
 
   <div class="row">
-    <%= form_with model: @post, url: public_posts_path, method: :post do |f| %>
+    <%= form_with(model: @post, local: true, url: public_posts_path, method: :post) do |f| %>
       <table class="mx-auto">
         <tr>
           <th>施設名</th>
-          <td>　<%= f.text_field :shop %></td>
+          <td><%= f.text_field :shop, class: 'form-control' %></td>
         </tr>
         <tr>
           <th>写真</th>
-          <td>　<%= f.file_field :image, accept: "image/*" %></td>
+          <td><%= f.file_field :image, accept: "image/*" %></td>
         </tr>
         <tr>
-          <th>ジャンル</th>
-          <td>　<%= f.select :genre, { id: "genre_name", class: "user_class" } %></td>
+          <th>郵便番号</th>
+          <td><%= f.text_field :postal_code, class: 'form-control' %></td>
         </tr>
         <tr>
           <th>住所</th>
-          <td>〒<%= f.text_field :postal_code %></td>
-        </tr>
-        <tr>
-          <th></th>
-          <td>　<%= f.text_field :address %></td>
+          <td><%= f.text_field :address, class: 'form-control' %></td>
         </tr>
         <tr>
           <th>本文</th>
-          <td>　<%= f.text_area :text, size: "40x5" %></td>
+          <td><%= f.text_area :text, size: "40x5", class: 'form-control' %></td>
         </tr>
         <tr>
           <th>あなたの評価</th>
-          <td>　<%= f.select :amount, *[1..10] %></td>
+          <td><%= f.select :amount, *[1..10], class: 'form-control' %></td>
         </tr>
       </table>
       <%= f.submit "投稿" , class: "btn btn-primary"%>
     <% end %>
   </div>
 </div>
+

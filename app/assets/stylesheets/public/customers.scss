@@ -1,3 +1,53 @@
 // Place all the styles related to the public/customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+//退会画面
+.ppp-confirm {
+  background-color: #FFFFFF;
+  padding-top: 90px;
+  padding-bottom: 500px;
+}
+
+//プロフィール編集画面
+.ppp-customer-edit {
+  background-color: #FFFFFF;
+  padding-top: 90px;
+  padding-bottom: 400px;
+}
+
+  //ボタン
+.btn-customer {
+  display: flex;
+  justify-content: right;
+	margin: auto;
+	width: 450px;
+}
+
+//会員情報編集画面
+.ppp-inf-edit {
+  background-color: #FFFFFF;
+  padding-top: 90px;
+  padding-bottom: 200px;
+}
+
+//検索画面
+.search-form {
+  background-color: #FFFFFF;
+  padding-bottom: 500px;
+}
+
+//詳細画面
+  //投稿件数
+.post-count {
+  border-bottom: 2px solid gainsboro;
+  margin-left: 30px;
+  padding: 0px 5px;
+}
+
+  //自己紹介文
+.introduction {
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+

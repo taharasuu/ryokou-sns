@@ -14,4 +14,8 @@ class Post < ApplicationRecord
     where(["shop like? OR address like?", "%#{keyword}%", "%#{keyword}%"])
   end
 
+#map機能
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
 end

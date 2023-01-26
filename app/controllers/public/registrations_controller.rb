@@ -2,11 +2,12 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
 #ゲストログイン機能
-  before_action :check_guest, only: %i[update destroy]
+  before_action :ensure_general_customer, only: [:update, :destroy]
 
-  def check_guest
-    if resource.email == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーは編集・削除できません。'
+
+  def ensure_general_customer
+    if resource.email == "guest@example.com"
+      redirect_to root_path, alert: "ゲストユーザーの変更・削除はできません"
     end
   end
 

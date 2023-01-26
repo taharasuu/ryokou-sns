@@ -31,15 +31,16 @@ class Customer < ApplicationRecord
 
   #フォローしたときの処理
   def followed(customer_id)
-    followers.create(followed_id: customer_id)
+    # binding.pry
+    follows.create(followed_id: customer_id)
   end
   # フォローを外すときの処理
   def unfollow(customer_id)
-    followers.find_by(followed_id: customer_id).destroy
+    follows.find_by(followed_id: customer_id).destroy
   end
   # フォローしているか判定
-  def followed?(customer_id)
-    followeds.include?(customer_id)
+  def followed?(customer)
+    followeds.include?(customer)
   end
 
 

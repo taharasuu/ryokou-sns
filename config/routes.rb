@@ -5,10 +5,7 @@ Rails.application.routes.draw do
   passwords: "public/passwords",
   sessions: 'public/sessions'
   }
-#ゲストログイン機能
-  devise_scope :customer do
-    post '/customers/guest_sign_in', to: 'public/sessions#new_guest'
-  end
+
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
@@ -34,13 +31,22 @@ Rails.application.routes.draw do
       delete 'go/:id' => 'gos#destroy', as: 'destroy_go'
       #コメント機能
       resources :comments, only: [:create, :destroy]
+      #地図機能
+      get 'map' => 'posts#map'
+    end
+    #ゲストログイン機能
+    devise_scope :customer do
+      post "customers/guest_sign_in", to: "sessions#guest_sign_in"
     end
     resources :customers, only: [:new, :create, :show, :edit, :update] do
       get 'inf_show' => 'customers#inf_show'
       get 'inf_edit' => 'customers#inf_edit'
-      get 'inf_update' => 'customers#inf_update'
+      patch 'inf_update' => 'customers#inf_update'
       #ユーザー検索機能
       get 'search' => 'customers#search', on: :collection
+      #退会機能
+      get 'confirm' => 'customers#confirm'
+      patch 'withdrow' => 'customers#withdrow'
     end
     resources :follows, only: [:create, :destroy] do
       get 'follower/:id' => 'follows#follower', as: 'follower'

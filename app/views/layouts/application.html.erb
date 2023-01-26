@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -14,28 +14,32 @@
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-        <h2 class="logo">旅スタグラム</h2>
+        <h2 class="logo"><%= image_tag 'logo10.jpg' %></h2>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
+
           <% if customer_signed_in? %>
-           <li>
-              <%= link_to "アカウント検索", search_public_customers_path, class: 'btn btn-outline-dark' %>
-            </li>
-            <li>
-              <%= link_to "ログアウト",  destroy_customer_session_path, method: :delete, data:{confirm: " [確認]　ログアウトしますか?"}, class: 'btn btn-outline-dark' %>
-            </li>
+              <li>
+                <%= link_to "アカウント検索", search_public_customers_path, class: 'btn btn-outline-dark' %>
+              </li>
+              <li>
+                <%= link_to "ログアウト",  destroy_customer_session_path, method: :delete, data:{confirm: " [確認]　ログアウトしますか?"}, class: 'btn btn-outline-dark' %>
+              </li>
           <% elsif admin_signed_in? %>
              <li>
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-outline-dark' %>
+             </li>
+             <li>
+              <%= link_to "投稿一覧", admin_posts_path, class: 'btn btn-outline-dark' %>
+             </li>
+             <li>
+              <%= link_to "会員一覧", admin_customers_path, class: 'btn btn-outline-dark' %>
              </li>
           <% else %>
-            <li>
-              <%= link_to "About", about_path, class: 'btn btn-outline-dark' %>
-            </li>
             <li>
               <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-outline-dark' %>
             </li>
@@ -43,7 +47,10 @@
               <%= link_to "ログイン", new_customer_session_path, class: 'btn btn-outline-dark' %>
             </li>
             <li>
-              <%= link_to '管理者用', admin_path, class: 'btn btn-outline-dark' %>
+              <%= link_to 'ゲストログイン', public_customers_guest_sign_in_path, method: :post, class: 'btn btn-outline-dark' %>
+            </li>
+            <li>
+              <%= link_to '管理者用', new_admin_session_path, class: 'btn btn-outline-dark' %>
             </li>
           <% end %>
           </ul>
@@ -52,7 +59,10 @@
       </nav>
     </header>
 
-   <%= yield %>
+    <main>
+       <%= yield %>
+    </main>
+
 
     <footer class="border-top shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">

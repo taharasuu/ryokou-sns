@@ -1,6 +1,6 @@
 <h4>admin customers index </h4>
 
-<div class="container col-lg-8">
+<div class="container ppp col-lg-8">
   <div class="row">
     <h3 class="page-name">会員一覧</h3>
   </div>
@@ -38,9 +38,7 @@
     </table>
   </div>
 
-  <div class="row">
-    <div class="px-auto">
-      <%= paginate @customers %>
-    </div>
+  <div class="paginate">
+    <%= paginate @customers %>
   </div>
 </div>

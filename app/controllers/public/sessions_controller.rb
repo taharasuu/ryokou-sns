@@ -3,11 +3,15 @@
 class Public::SessionsController < Devise::SessionsController
 
 #ゲストログイン機能
-  def new_guest
+  def guest_sign_in
     customer = Customer.guest
     sign_in customer
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
+
+  
+
+  # ・・・ (Rails7へDviseを導入する際に追記した内容) ・・・
 
 
   # before_action :configure_sign_in_params, only: [:create]

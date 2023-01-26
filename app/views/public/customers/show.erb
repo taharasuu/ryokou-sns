@@ -1,5 +1,5 @@
 <h4>public_customer_show</h4>
-<div class="container col-lg-8">
+<div class="container ppp col-lg-8">
   <div class="row">
     <h2 class="page-name col-lg-5">プロフィール</h2>
   </div>
@@ -12,16 +12,48 @@
         <%= image_tag 'no_image', size: "100x100" %>
       <% end %>
     </div>
-    <div class="user-name">
-      <%= @customer.user_name %>
-    </div>
-    <div class="folloew ed">
-      <%= link_to "フォロー中", public_follow_followed_path(@customer.id) %></br>
-      <%= @customer.followeds.count %>
-    </div>
-    <div class="folloew er">
-      <%= link_to "フォロワー", public_follow_follower_path(@customer.id) %></br>
-      <%= @customer.followers.count %>
+
+    <div class="user-jyouhou">
+      <div class="user-name">
+        <%= @customer.user_name %>
+      </div>
+
+      <div class="folloew ed">
+        <%= link_to "フォロー中", public_follow_followed_path(@customer.id) %>
+        <%= @customer.followeds.count %></br>
+
+        <%= link_to "フォロワー", public_follow_follower_path(@customer.id) %>
+        <%= @customer.followers.count %></br>
+      </div>
+
+      <div class="row customer-btn">
+        <% if current_customer.id == params[:id].to_i %>
+          <div class="profile">
+            <%= link_to "プロフィール変更", edit_public_customer_path(current_customer), class: 'btn btn-outline-dark' %>
+          </div>
+
+          <div class="customer_information">
+            <%= link_to "会員情報変更", public_customer_inf_edit_path(current_customer), class: 'btn btn-outline-dark' %>
+          </div>
+
+          <div class="go">
+            <%= link_to "行ってみたい", public_post_index_go_path(current_customer), class: 'btn btn-outline-dark' %>
+          </div>
+
+          <div class="go">
+            <%= link_to "退会する", public_customer_confirm_path(current_customer), class: 'btn btn-outline-dark' %>
+          </div>
+
+        <% else %>
+          <div class="following">
+            <% if current_customer.followed?(@customer) %>
+              <%= link_to "フォロー外す", public_follow_path(@customer.id), method: :delete, class: 'btn btn-outline-dark' %>
+            <% else %>
+              <%= link_to "フォローする", public_follows_path(customer_id: @customer.id), method: :post, class: 'btn btn-outline-dark' %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 
@@ -33,32 +65,13 @@
 
 
 
-  <div class="row">
-    <% if current_customer %>
-      <div class="profile">
-        <%= link_to "プロフィール変更", edit_public_customer_path(current_customer), class: 'btn btn-outline-dark' %>
-      </div>
-      <div class="customer_information">
-        <%= link_to "会員情報変更", public_customer_inf_edit_path(current_customer), class: 'btn btn-outline-dark' %>
-      </div>
-      <div class="go">
-        <%= link_to "行ってみたい", public_post_index_go_path(current_customer), class: 'btn btn-outline-dark' %>
-      </div>
-    <% else %>
-      <div class="following">
-        <% if current_customer.following?(@customer) %>
-          <%= link_to "フォロー外す", public_customer_follow_path(@customer.id), method: :delete %>
-        <% else %>
-          <%= link_to "フォローする", public_customer_follows_path(@customer.id), method: :post %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-  <div class="row">
-    <h5>投稿 全<%= @posts.count %>件</h5>
-  </div>
+
 
   <div class="row">
+    <h5 class="post-count">投稿 全<%= @posts.count %>件</h5>
+  </div>
+
+  <div class="row post-index">
     <% @posts.each do |post| %>
       <div class="item-image col-md-3">
         <%=link_to public_post_path(post) do %>
@@ -71,5 +84,10 @@
       </div>
     <% end %>
   </div>
+
+  <div class="paginate">
+    <%= paginate @posts %>
+  </div>
+</div>
 
 

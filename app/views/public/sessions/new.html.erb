@@ -1,27 +1,32 @@
 <h4>sessions_new</h4>
+<div class="container ppp col-lg-8">
+  <div class="row">
+    <h2>ログイン</h2>
+  </div>
 
-<h2>ログイン</h2>
+  <div class="row">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <table>
+        <tr>
+          <th><%= f.label :メールアドレス %></th>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :パスワード %></th>
+          <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><%= f.submit "ログイン" , class: "btn btn-sm btn-primary" %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <table>
-    <tr>
-      <th><%= f.label :メールアドレス %></th>
-      <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :パスワード %></th>
-      <td><%= f.password_field :password, autocomplete: "current-password" %></td>
-    </tr>
-    <tr>
-      <th></th>
-      <td><%= f.submit "ログイン" , class: "btn btn-sm btn-primary" %></td>
-    </tr>
-  </table>
-<% end %>
-
-<div class="row">
-  <h3 class="page-name">会員登録がお済みでない方</h3>
-  <h3 class="sgin-text">
-  <%#= render "public/shared/links" %>
-  <%= link_to "こちら", new_customer_registration_path %>から新規登録を行なってください。</h3>
+  <div class="row">
+    <h3 class="page-name">会員登録がお済みでない方</h3>
+    <h3 class="sgin-text">
+      <%#= render "public/shared/links" %>
+    <%= link_to "こちら", new_customer_registration_path %>から新規登録を行なってください。</h3>
+  </div>
 </div>

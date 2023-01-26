@@ -1,11 +1,11 @@
 <h4>public_post_index</h4>
-<div class="container col-lg-6">
+<div class="container ppp col-lg-8">
   <div class="row">
     <h3 class="page-name">投稿一覧</h3>
   </div>
 
   <% @posts.each do |post| %>
-    <div class="row">
+    <div class="row post">
       <div class="i_con col-lg-1">
         <% if post.customer.image.attached? %>
           <%= image_tag post.customer.image, size: "50x50" %>
@@ -17,9 +17,7 @@
       <div class="user-name col-lg-11">
         <%= post.customer.user_name %>
       </div>
-    </div>
 
-    <div class="row">
       <div class="photo mx-auto">
         <%=link_to public_post_path(post) do %>
           <% if post.image.attached? %>
@@ -29,10 +27,8 @@
           <% end %>
         <% end %>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="shop col-lg-3">
+      <div class="shop col-lg-11">
         <h3><%= post.shop %></h3>
       </div>
       <div class="address col-lg-5">
@@ -44,4 +40,8 @@
       </div>
     </div>
   <% end %>
+
+  <div class="paginate">
+    <%= paginate @posts %>
+  </div>
 </div>

@@ -1,33 +1,32 @@
 <h4>pulic_posts_edit</h4>
 
-<div class="container">
+<div class="container ppp col-lg-8">
   <div class="row">
     <h2>投稿編集</h2>
   </div>
 
   <div class="row">
-    <%= form_with model: @post, url: public_post_path(@post.id), method: :patch do |f| %>
+    <%= form_with model: @post, local: true, url: public_post_path(@post.id), method: :patch do |f| %>
       <table class="mx-auto">
         <tr>
           <th>施設名</th>
-          <td><%= f.text_field :shop %></td>
+          <td><%= f.text_field :shop, class: 'form-control' %></td>
         </tr>
         <tr>
           <th>写真</th>
           <td><%= f.file_field :image, accept: "image/*" %></td>
         </tr>
         <tr>
-          <th>ジャンル</th>
-          <td><%= f.select :amount, *[@genres] %></td>
+          <th>郵便番号</th>
+          <td><%= f.text_field :postal_code, class: 'form-control' %></td>
         </tr>
         <tr>
           <th>住所</th>
-          <td><%= f.text_field :postal_code %></td>
-          <td><%= f.text_field :address %></td>
+          <td><%= f.text_field :address, class: 'form-control' %></td>
         </tr>
         <tr>
           <th>コメント</th>
-          <td><%= f.text_area :text, size: "40x5" %></td>
+          <td><%= f.text_area :text, size: "40x5", class: 'form-control' %></td>
         </tr>
         <tr>
           <th>あなたの評価</th>

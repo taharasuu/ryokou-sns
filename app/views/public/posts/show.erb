@@ -1,7 +1,7 @@
 <h4>public_posts_show</h4>
-<div class="container col-lg-8">
+<div class="container ppp  col-lg-8">
   <div class="row">
-    <div class="i_con col-lg-4">
+    <div class="i_con col-lg-1">
       <%=link_to public_customer_path(@post) do %>
         <% if @post.customer.image.attached? %>
           <%= image_tag @post.customer.image, size: "50x50" %>
@@ -10,20 +10,24 @@
         <% end %>
       <% end %>
     </div>
-    <div class="user-name">
+
+    <div class="user-name col-lg-11">
       <%= @post.customer.user_name %>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="shop-name col-lg-10">
+    <div class="shop-name col-lg-9">
       <h2><%= @post.shop %></h2>
     </div>
-    <div class="going col-lg-2">
+
+    <div class="going col-lg-3">
       <% if current_customer.go_find(@post.id) %>
-        <%= link_to '行ってみたい!(外す)', public_post_destroy_go_path(@post.id), method: :delete %>
+        <%= link_to public_post_destroy_go_path(@post.id), method: :delete, class: 'btn col-lg-12 btn-info' do %>
+          <span>行ってみたい！</span>
+        <% end %>
       <% else %>
-        <%= link_to '行ってみたい!', public_post_create_go_path(@post.id), method: :post %>
+        <%= link_to public_post_create_go_path(@post.id), method: :post, class: 'btn col-lg-12 btn-info' do %>
+          <span>行ってみたいへ登録<i class="fas fa-plane"></i></i></span>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -39,27 +43,28 @@
   </div>
 
   <div class="row">
-    <div class="address col-lg-6">
+    <div class="address col-lg-5">
       <p>〒<%= @post.postal_code %></br>
           　<%= @post.address %></p>
-    </div>
-    <div class="map col-lg-2">
-      a
     </div>
     <div class="evaluation col-lg-2">
       <p>評価:<%= @post.evaluation %>/10点中</p>
     </div>
-    <div class="good col-lg-2">
+    <div class="map col-lg-2">
+      <%= link_to  public_post_map_path(@post.id), class: 'btn col-lg-12 btn-info' do %>
+        <span>地図<i class="far fa-map"></i></span>
+      <% end %>
+    </div>
+    <div class="good col-lg-3">
       <% if current_customer.good_find(@post.id) %>
-        <%= link_to public_post_destroy_good_path(@post.id), method: :delete do %>
-          <span><i class="far fa-heart"></i></span>
+        <%= link_to public_post_destroy_good_path(@post.id), method: :delete, class: 'btn col-lg-12 btn-info' do %>
+          <span><i class="fas fa-heart"></i>お気に入り <%= @post.goods.count %>件</span>
         <% end %>
       <% else %>
-        <%= link_to public_post_create_good_path(@post.id), method: :post do %>
-          <span><i class="fas fa-heart"></i></span>
+        <%= link_to public_post_create_good_path(@post.id), method: :post, class: 'btn col-lg-12 btn-info' do %>
+          <span><i class="far fa-heart"></i>お気に入り <%= @post.goods.count %>件</span>
         <% end %>
       <% end %>
-      <t>お気に入り <%= @post.goods.count %>件</t>
     </div>
   </div>
   <div class="text">
@@ -67,20 +72,22 @@
   </div>
 
   <div class="row">
-    <% if current_customer %>
-      <div class="post botn col-lg-3">
+    <% if current_customer.id == @post.customer_id %>
+      <div class="post-botn col-lg-3">
       </div>
 
-      <div class="post botn col-lg-3 px-auto">
+      <div class="post-botn col-lg-3 px-auto">
         <%= link_to "投稿編集", edit_public_post_path(@post.id), class: 'btn col-lg-12 btn-outline-dark' %>
       </div>
 
-      <div class="post botn col-lg-3 px-auto">
+      <div class="post-botn col-lg-3 px-auto">
         <%= link_to "投稿削除", public_post_path(@post.id), method: :delete, data:{confirm: " [確認]　削除しますか?"}, class: 'btn col-lg-12 btn-outline-dark' %>
       </div>
 
-      <div class="post botn col-lg-3">
+      <div class="post-botn col-lg-3">
       </div>
+    <% else %>
+
     <% end %>
   </div>
 
@@ -121,6 +128,7 @@
       </table>
     </div>
   </div>
+</div>
 
 
 

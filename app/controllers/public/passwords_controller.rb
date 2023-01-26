@@ -3,11 +3,11 @@
 class Public::PasswordsController < Devise::PasswordsController
 
 #ゲストログイン機能
-  before_action :check_guest, only: :create
+  before_action :ensure_general_customer, only: :create
 
-  def check_guest
-    if params[:customer][:email].downcase == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーは編集・削除できません。'
+  def ensure_general_customer
+    if params[:customer][:email].downcase == "guest@example.com" # パスワード再設定ページのフォームに入力されたメールアドレスはparams[:user][:email]で受け取れる
+      redirect_to new_customer_session_path, alert: "ゲストユーザーのパスワード再設定はできません"
     end
   end
 

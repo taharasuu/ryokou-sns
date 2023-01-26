@@ -13,3 +13,85 @@
  *= require_tree .
  *= require_self
  */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  width: 100%; /* 横幅いっぱい */
+  height: 70px; /* 高さ120px */
+  line-height: 70px;
+  position: fixed; /* ヘッダーを固定する */
+  z-index: 999;
+  top: 0; /* 上部から配置の基準位置を決める */
+  left: 0; /* 左から配置の基準位置を決める */
+  background-color: #FFF;
+
+}
+
+footer {
+  width: 100%;
+  height: 70px;
+  line-height: 70px;
+  position: fixed; /* ヘッダーを固定する */
+  z-index: 999;
+  bottom: 0; /* 上部から配置の基準位置を決める */
+  left: 0; /* 左から配置の基準位置を決める */
+  background-color: #FFF;
+}
+
+main {
+  width: 100%; /* 横幅いっぱい */
+  height: 1400px; /* 高さ1400px（多めに設定） */
+  background-color: #AFEEEE;/* 全体の背景色　*/
+}
+
+.ppp {
+  background-color: #FFFFFF;
+  padding-top: 80px;
+  padding-bottom: 90px;
+}
+
+/*　customer_show 投稿件数　*/
+.post-cuont {
+  border-top: solid 1px #000;
+  padding-top: 50px;
+}
+
+   /*　投稿区切り　*/
+.post {
+  border-bottom: 2px solid #AFEEEE;
+  padding-top: 20px;
+}
+
+/*　投稿ページについて　*/
+  /*　お気に入り件数 配置　*/
+.good {
+   margin: 0 0 0 auto;
+}
+/*　投稿写真　配置　 */
+.photo {
+  display: block;
+	margin: auto;
+}
+
+/*　各ページの題名　*/
+.page-name {
+  padding-bottom: 20px;
+}
+
+
+/*　ページネイション　配置　*/
+.paginate {
+	display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
