@@ -31,7 +31,7 @@
     </div>
 
     <div class="btn-delete">
-      <%= link_to "投稿削除", public_post_path(@post.id), method: :delete, data:{confirm: " [確認]　削除しますか?"}, class: 'btn col-lg-12 btn-outline-dark' %>
+      <%= link_to "投稿削除", admin_post_path(@post.id), method: :delete, data:{confirm: " [確認]　削除しますか?"}, class: 'btn col-lg-12 btn-outline-dark' %>
     </div>
   </div>
 

@@ -10,4 +10,10 @@ class Admin::PostsController < ApplicationController
     @posts = Post.page(params[:page]).per(8)
   end
 
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to admin_posts_path
+  end
+
 end

@@ -63,7 +63,7 @@ Rails.application.routes.draw do
 namespace :admin do
   resources :homes, only: [:top] do
   end
-  resources :posts, only: [:index, :show] do
+  resources :posts, only: [:index, :show, :destroy] do
   end
   resources :customers, only: [:index, :show, :edit, :update] do
   end

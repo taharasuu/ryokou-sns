@@ -1,7 +1,7 @@
 <h4>public_customer_edit</h4>
 <div class="container ppp-customer-edit col-lg-8">
   <div class="row">
-    <h2 class="page-name">プロフィール編集</h2>
+    <h2 class="page-name">ユーザー情報</h2>
   </div>
 
   <div class="row">
@@ -21,7 +21,9 @@
       </tr>
     </table>
     <div class="btn-customer">
-      <%= f.submit "変更" , class: "btn btn-primary"%>
+      <% unless current_customer.email == "guest@example.com" %>
+        <%= f.submit "変更" , class: "btn btn-primary"%>
+      <% end %>
     </div>
     <% end %>
   </div>

@@ -2,7 +2,7 @@
 <div class="container ppp  col-lg-8">
   <div class="row">
     <div class="i_con col-lg-1">
-      <%=link_to public_customer_path(@post) do %>
+      <%=link_to public_customer_path(@post.customer) do %>
         <% if @post.customer.image.attached? %>
           <%= image_tag @post.customer.image, size: "50x50" %>
         <% else %>

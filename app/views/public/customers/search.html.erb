@@ -9,19 +9,28 @@
   </div>
 
   <% @customers.each do |customer| %>
-    <div class="row post">
-      <div class="photo">
-        <%=link_to public_customer_path(customer) do %>
-          <% if customer.image.attached? %>
-            <%= image_tag customer.image, size: "100x100" %>
-          <% else %>
-            <%= image_tag 'no_image', size: "100x100" %>
-          <% end %>
-        <% end %>
-      </div>
-
-      <div class="user-name">
-        <%= customer.user_name %>
+    <div class="row">
+      <div class="photo col-lg-10">
+        <table class="table table-hover table-inverse col-lg-12 px-auto">
+          <thead class="text-center">
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <%=link_to public_customer_path(customer) do %>
+                  <% if customer.image.attached? %>
+                    <%= image_tag customer.image, size: "100x100" %>
+                  <% else %>
+                    <%= image_tag 'no_image', size: "100x100" %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td>
+                <%= customer.user_name %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   <% end %>
