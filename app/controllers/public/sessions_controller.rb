@@ -9,9 +9,23 @@ class Public::SessionsController < Devise::SessionsController
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
-  
+  before_action :customer_state, only: [:create]
+protected
+# 退会しているかを判断するメソッド
+  def customer_state
+    ## 【処理内容1】 入力されたemailからアカウントを1件取得
+    @customer = Customer.find_by(email: params[:customer][:email])
+    ## アカウントを取得できなかった場合、このメソッドを終了する
+    return if !@customer
+    ## 【処理内容2】 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
+    if @customer.valid_password?(params[:customer][:password])
+      if @customer.is_deleted == true
+        redirect_to new_customer_registration_path
+      end
+    end
+  end
 
-  # ・・・ (Rails7へDviseを導入する際に追記した内容) ・・・
+
 
 
   # before_action :configure_sign_in_params, only: [:create]

@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     devise_scope :customer do
       post "customers/guest_sign_in", to: "sessions#guest_sign_in"
     end
-    resources :customers, only: [:new, :create, :show, :edit, :update] do
+    resources :customers, only: [:show, :edit, :update] do
       get 'inf_show' => 'customers#inf_show'
       get 'inf_edit' => 'customers#inf_edit'
       patch 'inf_update' => 'customers#inf_update'
