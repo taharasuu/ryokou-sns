@@ -44,9 +44,7 @@
 </script>
 
 <!--以下の記述の中にあるYOUR_API_KEYには取得したご自身のAPIキーを記述してください-->
-<script async defer
-              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyC1IR3Tq_WyOa6hXevfZ1vsVBJq4ROeRZk&callback=initMap">
-</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["API_KEY"] %>&callback=initMap" async defer></script>
 <!--表示するmapのcssです。ご自身でカスタマイズしてください。高さが設定されていないと表示されないことがあります。-->
 <style type="text/css">
   #map { height: 200px;
