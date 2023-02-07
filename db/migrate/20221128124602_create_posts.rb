@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
 
       t.timestamps
 
-      t.integer :customer
+      t.integer :customer_id
       t.integer :genre_id
       t.string :shop
       t.string :postal_code
