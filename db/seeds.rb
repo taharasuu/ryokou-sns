@@ -6,3 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Admin.create!(password: '111111', email: 't.r.s.0714.1214@gmail.com')
+
+
+customers = Customer.create!(
+  [
+    {email: 'olivia@test.com', first_name: 'Olivia', password: 'password', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")},
+    {email: 'james@test.com', first_name: 'James', password: 'password', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user2.jpg"), filename:"sample-user2.jpg")},
+    {email: 'lucas@test.com', first_name: 'Lucas', password: 'password', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user3.jpg"), filename:"sample-user3.jpg")}
+  ]
+)
+
+Post.create!(
+  [
+    {shop: 'Cavello', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), text: '大人気のカフェです。', customer_id: customers[0].id },
+    {shop: '和食屋せん', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post2.jpg"), filename:"sample-post2.jpg"), text: '日本料理は美しい！', customer_id: customers[1].id },
+    {shop: 'ShoreditchBar', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post3.jpg"), filename:"sample-post3.jpg"), text: 'メキシコ料理好きな方にオススメ！', customer_id: customers[2].id }
+  ]
+)
