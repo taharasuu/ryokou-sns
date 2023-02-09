@@ -37,7 +37,7 @@
       <% if @post.image.attached? %>
         <%= image_tag @post.image, size: "400x400" %>
       <% else %>
-        <%= image_tag 'no_image', size: "400x400" %>
+        <%= image_tag asset_path('no_image.jpg'), size: "400x400" %>
       <% end %>
     </div>
   </div>
@@ -117,7 +117,7 @@
               <td><% if comment.customer.image.attached? %>
                     <%= image_tag comment.customer.image, size: "50x50" %>
                   <% else %>
-                    <%= image_tag 'no_image', size: "50x50" %>
+                    <%= image_tag asset_path('no_image.jpg'), size: "50x50" %>
                   <% end %>
                   　　<%= comment.customer.user_name %></td>
               <td><%= comment.comment %></td>

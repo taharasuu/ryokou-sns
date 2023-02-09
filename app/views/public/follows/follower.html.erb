@@ -21,7 +21,7 @@
             <td><% if follower.image.attached? %>
                   <%= image_tag follower.image, size: "50x50" %>
                 <% else %>
-                  <%= image_tag 'no_image', size: "50x50" %>
+                  <%= image_tag asset_path('no_image.jpg'), size: "50x50" %>
                 <% end %>
             </td>
             <td><%= follower.user_name %></td>

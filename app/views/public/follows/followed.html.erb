@@ -21,7 +21,7 @@
             <td><% if followed.image.attached? %>
                   <%= image_tag followed.image, size: "50x50" %>
                 <% else %>
-                  <%= image_tag 'no_image', size: "50x50" %>
+                  <%= image_tag asset_path('no_image.jpg'), size: "50x50" %>
                 <% end %>
             </td>
             <td><%= link_to public_customer_path(followed.id) do %>
