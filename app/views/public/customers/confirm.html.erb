@@ -27,8 +27,10 @@
     </div>
 
     <div class="col-lg-2">
-      <%= link_to  public_customer_withdrow_path(current_customer) , method: :patch , class: 'btn btn-danger', "data-confirm" => "本当に退会しますか？" do %>
-      <span>退会する</span>
+      <% unless current_customer.email == "guest@example.com" %>
+        <%= link_to  public_customer_withdrow_path(current_customer) , method: :patch , class: 'btn btn-danger', "data-confirm" => "本当に退会しますか？" do %>
+        <span>退会する</span>
+        <% end %>
       <% end %>
     </div>
 
