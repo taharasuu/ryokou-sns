@@ -1,24 +1,46 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# リョウコウ
+## サイト概要
+### サイトのテーマ
+観光産業を盛り上げる
+### テーマを選んだ理由
+コロナの影響で旅行業はコロナ前と比較し、２兆円の売上が減っており６割以上の企業が赤字であると発表されているデータが出ている。
+そんな旅行業への深刻な影響を明らかにするために実施されている「全国旅行支援」を後押しできると考え今回のテーマに決定しました。
+お店側がホームページやブログなどを使って宣伝する方法ではそのお店に興味がある人しかホームページを見ないため一定の観覧者への配信となり、
+どんなに良いホームページを作っても宣伝力が低いと思う。
+その点、観光客がSNSでシェアすることで、そのお店を知らない人でもお店の存在・情報を知るというメリットがあり宣伝力はかなり高いと思います。
+さらに写真や地図、投稿者の評価、コメント、いいねに数なども一緒に記載することで、よりそのお店について知ることができ、訪れたいと思う人も多くなると考えた。
+また、誰でも簡単に投稿ができるためお店側からの情報配信にも活用したいと思いました。
+そして、今の若い世代では「写真映えをするスポットやなどをSNSから探して、写真食べ物映えする写真を撮るために、写真映えスポットへ行ってSNSへ投稿する」
+といった人が多いため、SNSを活用することでより観光業を後押しできると考えた。
+### ユーザー
+-旅行好きな人
+-色々なお店の情報が知りたい人
+・旅行を計画している人
+-写真映えスポットを見つけたい人
+-自分の店を知ってもらいたいと思っている店側の人
+-今まで行ったことのないお店を探したい人
+-オススメのお店を友人同士でシェアしたい人
+### 主な利用シーン
+*旅行を計画する際に行きたいところなどを探す時
+*旅行の楽しい思い出をみんなにシェアしたい時
+*宿泊施設を探す時
+*目的地の地図を調べたい時
+*周りからの評価を知りたい時
+*行きたいリストを作成する時
+*今まで行ったことのないお店を探す時
+*このお店は良かったとみんなに紹介したい時
 
-Things you may want to cover:
 
-* Ruby version
+##  [設計書](https://docs.google.com/spreadsheets/d/1jF3gmsmPsUNea8iVSyVg1SzfjYO_jfx6rqFjXvP8nps/edit?usp=sharing)
+## 設計書
+[実装機能リスト](https://docs.google.com/spreadsheets/d/1jF3gmsmPsUNea8iVSyVg1SzfjYO_jfx6rqFjXvP8nps/edit?usp=sharing)
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 開発環境
+- OS：Linux(CentOS)
+-言語：HTML,CSS,JavaScript,Ruby,SQL
+-フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+-IDE：Cloud9
